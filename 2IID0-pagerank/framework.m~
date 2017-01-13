@@ -23,17 +23,14 @@ end
 edge_indices = zeros(length(A),1);
 for i=1:length(A)
    random = randi(sum(A(:,3)));
-   index = sum(A(:,3) < random)+1
-   if index > length(A)
-      index = index - 1; 
-   end
+   index = min(length(A),sum(A(:,3) < random)+1);
    edge_indices(i) = index;
    val = A(index,3);
    if index > 1
-      val = val - A(index-1,3); 
+      val = val - A( 
    end
    A(index,:) = [];
-   for j=index:length(A(:,1))
+   for j=index:length(A)
         A(j,3) = A(j,3)-val;
    end
 end
