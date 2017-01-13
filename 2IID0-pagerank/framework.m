@@ -1,4 +1,5 @@
 A = load('transition.txt', '-ascii');
+A_preserved = A;
 A_pagerank = power_without_teleport(A);
 a = 1;
 B = []; %an empty matrix to grow
@@ -41,7 +42,7 @@ for i=1:length(A)
    end
 end
 
-
+A = A_preserved;
 while length(B) ~= length(A)
     B(a,:) = A(edge_indices(a),:);
     X(:,a) = power_without_teleport(B); %after every node added, calculate the pageRank and store it in a different row in X
