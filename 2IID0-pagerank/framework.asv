@@ -1,11 +1,12 @@
 A = load('transition.txt', '-ascii');
+V = []
+for i = 1:10
+    V(:,i) = frameworkfunction(A, 0);
+end
+
 a = 1;
-B = A * 0; %an empty matrix to grow
-X = [];
-while B ~= A
-    randomEdgeNumber = randi(length(A));
-    randomEdge = A(randomEdgeNumber,:)
-    B(randomEdgeNumber,:) = randomEdge;
-    test = B(randomEdgeNume
-    %X(b,:) = power_without_teleport(B); %after every node added, calculate the pageRank and store it in a different row in X
+meanarray = [];
+for i = V'
+    mean 
+    a = a + 1;
 end
