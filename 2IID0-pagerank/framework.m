@@ -20,19 +20,22 @@ for i=2:length(A)
     A(i,3) = A(i-1,3)+A(i,3);
 end
 
+indices = [1:length(A)];
 edge_indices = zeros(length(A),1);
 for i=1:length(A)
-   random = randi(sum(A(:,3)));
-   index = sum(A(:,3) < random)+1
+   max = A(length(A(:,1)),3);
+   random = randi(max);
+   index = sum(A(:,3) < random)+1;
    if index > length(A)
       index = index - 1; 
    end
-   edge_indices(i) = index;
+   edge_indices(i) = indices(index);
    val = A(index,3);
    if index > 1
       val = val - A(index-1,3); 
    end
    A(index,:) = [];
+   indices(index) = [];
    for j=index:length(A(:,1))
         A(j,3) = A(j,3)-val;
    end
