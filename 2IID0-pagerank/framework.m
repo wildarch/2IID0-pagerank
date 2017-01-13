@@ -1,14 +1,14 @@
 A = load('transition.txt', '-ascii');
 a = 1;
-b = 1;
 B = []; %an empty matrix to grow
-X = [];
+X = []; %Will contain the pagerank for each iteration
+V = zeros(length(A), 1);
+random_edge_indices = randperm(length(A));
 while length(B) ~= length(A)
-    randomEdgeNumber = randi(length(A));
-    randomEdge = A(randomEdgeNumber,:);
-    B(a,:) = randomEdge;
+    B(a,:) = A(random_edge_indices(a),:);
+    X(:,a) = power_without_teleport(B); %after every node added, calculate the pageRank and store it in a different row in X
     a = a+1;
-    X(b,:) = power_without_teleport(B); %after every node added, calculate the pageRank and store it in a different row in X
-    b = b + 1;
+    if a > 2
+        V(a) = value_based_error(B(a-1,:),B(a-2,:));
+    end
 end
-value_based_error(A)
