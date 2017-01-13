@@ -26,9 +26,9 @@ edge_indices = zeros(length(A),1);
 for i=1:length(A)
    max = A(length(A(:,1)),3);
    random = randi(max);
-   index = sum(A(:,3) < random)+1;
-   if index > length(A)
-      index = index - 1; 
+   index = sum(A(:,3) < random);
+   if index == 0
+      index = 1; 
    end
    edge_indices(i) = indices(index);
    val = A(index,3);
